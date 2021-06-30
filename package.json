@@ -1,0 +1,19 @@
+{
+  "name": "nextjs-sanity",
+  "version": "1.0.0",
+  "description": "Next Js with Sanity CMS",
+  "main": "index.js",
+  "scripts": {
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "dev": "next dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
