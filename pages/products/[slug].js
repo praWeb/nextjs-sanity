@@ -18,19 +18,11 @@ const productQuery = groq`
 `
 
 export default function Product({data, preview}) {
-  const router = useRouter()
-
-  const {data: product} = usePreviewSubscription(productQuery, {
-    params: {slug: data.product?.slug},
-    initialData: data.product,
-    enabled: preview && data.product?.slug,
-  })
-
-  if (!router.isFallback && !data.product?.slug) {
+  if (!data?.product?.slug) {
     return <ErrorPage statusCode={404} />
   }
 
-  const {title} = product
+  const {title} = data.product
   return (
     <article>
       <h2>{title}</h2>
