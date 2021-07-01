@@ -6,7 +6,11 @@ import Link from 'next/link'
 const productQuery = groq`
   *[_type == "product"] {
     title,
-    slug
+    slug,
+    _id,
+    "price": defaultProductVariant.price,
+    "imageUrl": defaultProductVariant.images[0].asset->url,
+    "blurb": blurb.en
   }
 `
 
@@ -15,9 +19,14 @@ export default function Products ({data}) {
     <>
       { data.product.map((product, index) => (
         <div className="indent" key={index}>
-            {product.title} - 
+            <div>
+              <span> {product.title} </span> - <span> {product.price} </span>
+            </div>
+            <div>
+              {product.blurb}
+            </div>
             <Link href={`/products/${product.slug.current}`}>
-              <a> See Details </a>
+              <img src={product?.imageUrl} style={{cursor: "pointer"}}/>
             </Link>
         </div>
       )) }
